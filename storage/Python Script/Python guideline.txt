@@ -1,0 +1,7 @@
+1. install python
+2. python --version
+3. pip install cryptography 
+4. python get-pip.py   (if not install pip)
+4. pip --version
+5. add Environment variable if not install (Open the Control Panel and go to System and Security → System → Advanced system settings → Environment Variables.)
+6. Paste two file inside script, python install folder 
