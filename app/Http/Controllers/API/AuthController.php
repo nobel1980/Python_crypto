@@ -3,22 +3,45 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Helpers\FernetHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use MNC\Fernet;
 
 class AuthController extends Controller
 {
+    protected $fernetHelper;
+
+    public function __construct(FernetHelper $fernetHelper)
+    {
+        $this->fernetHelper = $fernetHelper;
+    }
+
     public function login(Request $request)
     {
 
-        $userLoginInfo = $request->all();
+        $data = $request->all();
+        $json_data = json_encode($data);
+
+        //$fernet = Fernet::create('cw_0x689RpI-jtRR7oE8h_eQsKImvJapLeSbXpwF4e4=');
+
+        $encryptdedData = $this->fernetHelper->encode($json_data);
+
+        // var_dump($encryptdedData);
+        // exit();
+        
+        // Encode a message
+        $encryptdedData = $fernet->encode($json_data);
+
+        $decryptdedData = $fernet->decode($encryptdedData);
+
+
 
         //$decryptedData = decrypt($request->input($userLoginInfo));
 
         //$encryptdedData = encrypt($request->input($userLoginInfo));
 
-        var_dump($userLoginInfo);
-        exit();
 
         $encryptedResponse = encrypt($response->body());
 

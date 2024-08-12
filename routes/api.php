@@ -8,13 +8,18 @@ use App\Http\Controllers\API\ServiceController;
 use App\Http\Controllers\API\SalesController;
 use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\CryptController;
+use App\Http\Middleware\LogRequests;
+
+Route::middleware([logger::class])->group(function () {
+    Route::get('/inventory/devices/sysdate', [ServiceController::class, 'server_date']);
+    });
 
 Route::post('/auth/signin', [AuthController::class, 'login']);
 Route::post('/auth/refreshtoken', [AuthController::class, 'refresh_token']);
 Route::get('/settings/policies/dto', [ServiceController::class, 'policies_dto']); /** All policy as list -api 4 */
 Route::get('/settings/service/categories/all', [ServiceController::class, 'category_all']);
 Route::get('/inventory/devices/all', [ServiceController::class, 'devices_all']);
-Route::get('/inventory/devices/sysdate', [ServiceController::class, 'server_date']);
+//Route::get('/inventory/devices/sysdate', [ServiceController::class, 'server_date']);
 Route::get('/inventory/devices/dto/{device_number}/slno', [ServiceController::class, 'device_status']); /** Device status -API 7 */ 
 Route::get('/inventory/devices/{device_number}/slno', [ServiceController::class, 'device_data']);  /** Device data details API -9 */
 Route::get('/invoices/items/{bin_number}', [ServiceController::class, 'invoice_details']);

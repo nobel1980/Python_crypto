@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+
 class ServiceController extends Controller
 {
     public function device_status(Request $request, $binNumber)

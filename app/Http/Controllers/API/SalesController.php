@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Log; 
 use MNC\Fernet;
 
 class SalesController extends Controller
